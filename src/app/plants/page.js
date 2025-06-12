@@ -32,7 +32,7 @@ export default function PlantsPage() {
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ y: 300, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
+            whileInView={{ y: 0, opacity: 1 }}
             viewport={{ always: true }}
             transition={{ duration: 1 }}
             className="text-center mb-12"
@@ -107,9 +107,9 @@ export default function PlantsPage() {
               {filteredPlants.map((plant, index) => (
                 <motion.div
                   key={plant.id}
-                  initial={{ x: 500, opacity: 0 }}
-                  viewport={{ always: true }}
+                  initial={{ x: -500, opacity: 0 }}
                   whileInView={{ x: 0, opacity: 1 }}
+                  viewport={{ always: true }}
                   transition={{ delay: index * 0.1, duration: 0.6 }}
                   className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl"
                 >
