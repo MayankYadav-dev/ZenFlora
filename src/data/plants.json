@@ -134,7 +134,7 @@
         "humidity": "Normal household humidity"
       },
       "proTip": "Leave the babies (plantlets) attached to the mother plant until they develop roots, then cut and pot them up!",
-      "mindfulnessMoment": "Watch your Spider Plant nurture its babies while still connected. Reflect on the ways you can support others while maintaining your own growth and well-being.",
+      "mindfulnessPrompt": "Watch your Spider Plant nurture its babies while still connected. Reflect on the ways you can support others while maintaining your own growth and well-being.",
       "category": ["pet-safe", "air-purifying", "easy-propagation", "beginner-friendly"]
     },
     {
@@ -158,7 +158,7 @@
         "humidity": "Moderate to high humidity"
       },
       "proTip": "Fiddle Leaf Figs hate change! Find the perfect spot and avoid moving them around to prevent leaf drop.",
-      "mindfulnessMoment": "Notice how your Fiddle Leaf Fig responds to consistency in care. Consider the areas of your life that also flourish with steady, mindful attention.",
+      "mindfulnessPrompt": "Notice how your Fiddle Leaf Fig responds to consistency in care. Consider the areas of your life that also flourish with steady, mindful attention.",
       "category": ["statement-plant", "large-leaves", "dramatic", "architectural"]
     }
 ]

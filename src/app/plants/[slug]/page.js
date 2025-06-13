@@ -3,12 +3,16 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
+import { use } from 'react';
 import { motion } from 'framer-motion'
+import { useMediaQuery } from 'react-responsive';
 import { ArrowLeft, Sun, Droplets, Mountain, Wind, Lightbulb, Heart, ArrowRight } from 'lucide-react'
 import plantsData from '@/data/plants.json'
 
 export default function PlantDetailPage({ params }) {
-  const plant = plantsData.find(p => p.id === params.slug)
+  const isSmallScreen = useMediaQuery({ maxWidth: 640 });
+  const { slug } = use(params);
+  const plant = plantsData.find(p => p.id === slug)
 
   if (!plant) notFound()
 
@@ -60,7 +64,7 @@ export default function PlantDetailPage({ params }) {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 200 }}
+              initial={isSmallScreen ? { x: 25, opacity: 0 } : { x: 200, opacity: 0 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ always: true }}
               transition={{ delay: 0.3, duration: 0.8 }}
@@ -222,7 +226,7 @@ export default function PlantDetailPage({ params }) {
               {relatedPlants.map((relatedPlant, index) => (
                 <motion.div
                   key={relatedPlant.id}
-                  initial={{ opacity: 0, y: 200, x:200 }}
+                  initial={isSmallScreen ? { x: 25, y:200, opacity: 0 } : { x: 200, y:200, opacity: 0 }}
                   whileInView={{ opacity: 1, y: 0, x:0 }}
                   viewport={{ always: true }}
                   transition={{ delay: index * 0.1, duration: 0.6 }}

@@ -4,10 +4,13 @@ import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { useMediaQuery } from 'react-responsive';
 import { Search, Filter, ArrowRight } from 'lucide-react'
 import plantsData from '@/data/plants.json'
 
 export default function PlantsPage() {
+  const isSmallScreen = useMediaQuery({ maxWidth: 640 });
+
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('All')
 
@@ -107,7 +110,7 @@ export default function PlantsPage() {
               {filteredPlants.map((plant, index) => (
                 <motion.div
                   key={plant.id}
-                  initial={{ x: -500, opacity: 0 }}
+                  initial={isSmallScreen ? { x: -100, opacity: 0 } : { x: -500, opacity: 0 }}
                   whileInView={{ x: 0, opacity: 1 }}
                   viewport={{ always: true }}
                   transition={{ delay: index * 0.1, duration: 0.6 }}

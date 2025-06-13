@@ -2,9 +2,12 @@
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { Heart, Leaf, Code, Camera, Users, Star, ExternalLink } from 'lucide-react'
+import { useMediaQuery } from 'react-responsive';
+import { Heart, Leaf, Users, Star, ExternalLink } from 'lucide-react'
 
 export default function AboutPage() {
+  const isSmallScreen = useMediaQuery({ maxWidth: 640 });
+
   return (
     <div className="min-h-screen bg-[#E7EFC7]">
       <section className="bg-[#AEC8A4] py-20">
@@ -31,7 +34,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -500 }}
+              initial={isSmallScreen ? { x: 25, opacity: 0 } : { x: 500, opacity: 0 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ always: true }}
               transition={{ duration: 0.8 }}
@@ -47,7 +50,7 @@ export default function AboutPage() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 500 }}
+              initial={isSmallScreen ? { x: 25, opacity: 0 } : { x: 500, opacity: 0 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ always: true }}
               transition={{ delay: 0.2, duration: 0.8 }}
@@ -110,7 +113,7 @@ export default function AboutPage() {
             }].map(({ icon, title, desc }, idx) => (
               <motion.div
                 key={title}
-                initial={{ opacity: 0, x: 300 }}
+                initial={isSmallScreen ? { x: 25, opacity: 0 } : { x: 300, opacity: 0 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ always: true }}
                 transition={{ delay: 0.1 * (idx + 1), duration: 0.6 }}
@@ -158,7 +161,7 @@ export default function AboutPage() {
       <section className="py-16 bg-[#E7EFC7]">
         <div className="container mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0, x: -500 }}
+            initial={isSmallScreen ? { x: -100, opacity: 0 } : { x: -500, opacity: 0 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ always: true }}
             transition={{ duration: 0.8 }}
