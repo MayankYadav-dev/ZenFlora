@@ -5,12 +5,10 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { use } from 'react';
 import { motion } from 'framer-motion'
-import { useMediaQuery } from 'react-responsive';
 import { ArrowLeft, Sun, Droplets, Mountain, Wind, Lightbulb, Heart, ArrowRight } from 'lucide-react'
 import plantsData from '@/data/plants.json'
 
 export default function PlantDetailPage({ params }) {
-  const isSmallScreen = useMediaQuery({ maxWidth: 640 });
   const { slug } = use(params);
   const plant = plantsData.find(p => p.id === slug)
 
@@ -64,8 +62,8 @@ export default function PlantDetailPage({ params }) {
             </motion.div>
 
             <motion.div
-              initial={isSmallScreen ? { x: 25, opacity: 0 } : { x: 200, opacity: 0 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ x: -100, y:-100, opacity: 0 }}
+              whileInView={{ opacity: 1, x: 0 ,y:0}}
               viewport={{ always: true }}
               transition={{ delay: 0.3, duration: 0.8 }}
               className="lg:pl-8"
@@ -226,8 +224,8 @@ export default function PlantDetailPage({ params }) {
               {relatedPlants.map((relatedPlant, index) => (
                 <motion.div
                   key={relatedPlant.id}
-                  initial={isSmallScreen ? { x: 25, y:200, opacity: 0 } : { x: 200, y:200, opacity: 0 }}
-                  whileInView={{ opacity: 1, y: 0, x:0 }}
+                  initial={{ x: -300,y:200, opacity: 0 } }
+                  whileInView={{ x: 0,y:0, opacity: 1 }}
                   viewport={{ always: true }}
                   transition={{ delay: index * 0.1, duration: 0.6 }}
                   className="bg-[#E7EFC7] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl"

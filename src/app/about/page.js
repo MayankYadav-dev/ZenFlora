@@ -2,11 +2,9 @@
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { useMediaQuery } from 'react-responsive';
 import { Heart, Leaf, Users, Star, ExternalLink } from 'lucide-react'
 
 export default function AboutPage() {
-  const isSmallScreen = useMediaQuery({ maxWidth: 640 });
 
   return (
     <div className="min-h-screen bg-[#E7EFC7]">
@@ -34,10 +32,10 @@ export default function AboutPage() {
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
-              initial={isSmallScreen ? { x: 25, opacity: 0 } : { x: 500, opacity: 0 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, scale: 0.5 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ always: true }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.5 }}
             >
               <div className="relative h-96 rounded-2xl overflow-hidden shadow-xl">
                 <Image
@@ -50,8 +48,8 @@ export default function AboutPage() {
             </motion.div>
 
             <motion.div
-              initial={isSmallScreen ? { x: 25, opacity: 0 } : { x: 500, opacity: 0 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ x: -100, y:-100, opacity: 0 }}
+              whileInView={{ opacity: 1, x: 0 ,y:0}}
               viewport={{ always: true }}
               transition={{ delay: 0.2, duration: 0.8 }}
               className="lg:pl-8"
@@ -113,8 +111,8 @@ export default function AboutPage() {
             }].map(({ icon, title, desc }, idx) => (
               <motion.div
                 key={title}
-                initial={isSmallScreen ? { x: 25, opacity: 0 } : { x: 300, opacity: 0 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ x: -300, opacity: 0 } }
+                whileInView={{ x: 0, opacity: 1 }}
                 viewport={{ always: true }}
                 transition={{ delay: 0.1 * (idx + 1), duration: 0.6 }}
                 className="text-center"
@@ -134,10 +132,10 @@ export default function AboutPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             <motion.div
-              initial={{ opacity: 0, y: 200 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.5 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ always: true }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.5 }}
               className="text-center mb-12"
             >
               <h2 className="text-3xl font-display font-light mb-6 text-[#3B3B1A]">
@@ -161,8 +159,8 @@ export default function AboutPage() {
       <section className="py-16 bg-[#E7EFC7]">
         <div className="container mx-auto px-6">
           <motion.div
-            initial={isSmallScreen ? { x: -100, opacity: 0 } : { x: -500, opacity: 0 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: -300 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ always: true }}
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto"

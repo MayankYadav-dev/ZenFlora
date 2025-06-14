@@ -3,14 +3,11 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { useMediaQuery } from 'react-responsive';
 import { ArrowRight, Leaf, Heart, Droplets } from 'lucide-react'
 import plantsData from '@/data/plants.json'
 
 export default function HomePage() {
   const featuredPlants = plantsData.slice(0, 2)
-
-  const isSmallScreen = useMediaQuery({ maxWidth: 640 });
 
   return (
     <div className="min-h-screen">
@@ -88,7 +85,7 @@ export default function HomePage() {
               {[Leaf, Heart, Droplets].map((Icon, i) => (
                 <motion.div
                   key={i}
-                  initial={isSmallScreen ? { x: 25, opacity: 0 } : { x: 200, opacity: 0 }}
+                  initial={{ x: -300, opacity: 0 } }
                   whileInView={{ x: 0, opacity: 1 }}
                   viewport={{ always: true }}
                   transition={{ delay: 0.2 + i * 0.2, duration: 0.6 }}
@@ -119,7 +116,7 @@ export default function HomePage() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
           <motion.div
-            initial={isSmallScreen ? { x: -100, y: 100, opacity: 0 } : { x: -1000, y: 100, opacity: 0 }}
+            initial={{ x: -200, y: 200, opacity: 0 }}
             whileInView={{ x: 0,y:0, opacity: 1 }}
             viewport={{ always: true }}
             transition={{ duration: 0.8 }}
@@ -137,9 +134,9 @@ export default function HomePage() {
             {featuredPlants.map((plant, index) => (
               <motion.div
                 key={plant.id}
-                initial={isSmallScreen ? { x: 25, opacity: 0 } : { x: 500, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
-                viewport={{ always: true }}
+                initial={{ x: -300, y:-200, opacity: 0 } }
+                  whileInView={{ x: 0,y:0, opacity: 1 }}
+                  viewport={{ always: true }}
                 transition={{ delay: index * 0.5, duration: 0.8 }}
                 className="bg-[#E7EFC7] rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow"
               >
