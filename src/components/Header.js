@@ -2,11 +2,13 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Leaf } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { Leaf, Menu, X } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useState } from 'react'
 
 export default function Header() {
   const pathname = usePathname()
+  const [menuOpen, setMenuOpen] = useState(false)
 
   const navItems = [
     { href: '/', label: 'Home' },
@@ -35,7 +37,7 @@ export default function Header() {
             </span>
           </Link>
 
-          <div className="flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <Link
                 key={item.href}
@@ -56,7 +58,44 @@ export default function Header() {
               </Link>
             ))}
           </div>
+
+          <div className="md:hidden">
+            <button onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle Menu">
+              {menuOpen ? (
+                <X className="w-6 h-6 text-[#3B3B1A]" />
+              ) : (
+                <Menu className="w-6 h-6 text-[#3B3B1A]" />
+              )}
+            </button>
+          </div>
         </nav>
+
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="md:hidden flex flex-col gap-4 mt-4"
+            >
+              {navItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setMenuOpen(false)}
+                  className={`font-medium px-2 py-1 transition-colors ${
+                    pathname === item.href
+                      ? 'text-[#8A784E]'
+                      : 'text-[#3B3B1A] hover:text-[#8A784E]'
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </motion.header>
   )
